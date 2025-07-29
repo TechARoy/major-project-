@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travel Offers</title>
+  <style>
+    :root {
+      --bg-color: #fff;
+      --text-color: #000;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.5s, color 0.5s;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Floating Bulb */
+    #bulb {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: yellow;
+      border-radius: 50%;
+      box-shadow: 0 0 20px yellow;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      cursor: pointer;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode #bulb {
+      background: #333;
+      color: #fff;
+      box-shadow: none;
+    }
+
+    .page-title {
+      text-align: center;
+      font-size: 2.5em;
+      margin: 60px 0 20px;
+    }
+
+    .section {
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      flex-wrap: wrap;
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-in-out;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 15px;
+    }
+
+    .side-by-side {
+      flex-direction: row;
+      justify-content: center;
+      gap: 40px;
+      text-align: left;
+    }
+
+    .red {
+      background-color: #e91e1e;
+      color: #fff;
+    }
+
+    .yellow {
+      background-color: #fbc02d;
+    }
+
+    .blue {
+      background-color: #03a9f4;
+      color: #fff;
+    }
+
+    body.dark-mode .red {
+      background-color: #8b0e0e;
+    }
+
+    body.dark-mode .yellow {
+      background-color: #a68c00;
+      color: #000;
+    }
+
+    body.dark-mode .blue {
+      background-color: #015d80;
+    }
+
+    .text {
+      font-size: 1.5em;
+      font-family: 'Cursive';
+      max-width: 300px;
+    }
+
+    .image-box {
+      background-color: #ccc;
+      width: 250px;
+      height: 180px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.4s ease;
+      position: relative;
+    }
+
+    .image-box:hover {
+      transform: scale(1.05);
+    }
+
+    .image-box::after {
+      content: "Limited Time!";
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 5px 10px;
+      font-size: 0.9em;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .image-box:hover::after {
+      opacity: 1;
+    }
+
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-box {
+      width: 250px;
+      height: 180px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    .video-box video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #topBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 16px;
+      font-size: 18px;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0.7;
+      display: none;
+      z-index: 1000;
+    }
+
+    #topBtn:hover {
+      opacity: 1;
+    }
+
+    /* Falling Dot Stars */
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: fallDot 5s linear infinite;
+    }
+
+    @keyframes fallDot {
+      0% {
+        transform: translateY(-10px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars-container"></div>
+
+  <h1 class="page-title">Explore Our Hot Travel Deals</h1>
+
+  <!-- Your travel sections (same as before) -->
+  <div class="section red">
+    <div class="section-content">
+      <div class="text">In this season there is 50% off</div>
+      <div class="image-box">
+        <img src="offer-1.png" alt="Offer 1">
+      </div>
+    </div>
+  </div>
+
+  <div class="section yellow">
+    <div class="section-content side-by-side">
+      <div class="text">On booking two hotels<br>Flat 40% discount</div>
+      <div class="image-box">
+        <img src="offer-2.png" alt="Offer 2">
+      </div>
+    </div>
+  </div>
+
+  <div class="section blue">
+    <div class="section-content">
+      <div class="text">10% off on booking of 6 people or more</div>
+      <div class="image-box">
+        <img src="offer-3.png" alt="Offer 3">
+      </div>
+    </div>
+  </div>
+
+  <div class="section yellow">
+    <div class="section-content side-by-side">
+      <div class="text">Explore beautiful destinations with 30% off</div>
+      <div class="video-box">
+        <video autoplay muted loop>
+          <source src="offer-4.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <div class="section red">
+    <div class="section-content">
+      <div class="text">Special festival deals - Save up to 60%</div>
+      <div class="image-box">
+        <img src="offer-5.png" alt="Offer 5">
+      </div>
+    </div>
+  </div>
+
+  <div id="bulb" onclick="toggleMode()">💡</div>
+  <button id="topBtn">↑</button>
+
+  <!-- Short satisfying click -->
+<audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+
+  <script>
+    const sections = document.querySelectorAll('.section');
+    const topBtn = document.getElementById("topBtn");
+
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.9;
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop < triggerBottom) {
+          section.classList.add('visible');
+        }
+      });
+      topBtn.style.display = window.scrollY > 200 ? "block" : "none";
+    };
+
+    topBtn.onclick = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', () => {
+      revealOnScroll();
+      generateStars();
+    });
+
+    function toggleMode() {
+      const body = document.body;
+      const root = document.documentElement;
+      const sound = document.getElementById("clickSound");
+
+      body.classList.toggle("dark-mode");
+
+      // Change colors
+      if (body.classList.contains("dark-mode")) {
+        root.style.setProperty('--bg-color', '#1c1b2a');
+        root.style.setProperty('--text-color', '#ffffff');
+      } else {
+        root.style.setProperty('--bg-color', '#ffffff');
+        root.style.setProperty('--text-color', '#000000');
+      }
+
+      // Play sound once
+      sound.currentTime = 0;
+      sound.play();
+    }
+
+    function generateStars() {
+      const container = document.getElementById("stars-container");
+      for (let i = 0; i < 60; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDuration = `${2 + Math.random() * 3}s`;
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        container.appendChild(star);
+      }
+    }
+  </script>
+</body>
+</html>

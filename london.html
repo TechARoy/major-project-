@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Places in London</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .tourist-places {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .place-box {
+            background-color: #f9c74f;
+            color: #fff;
+            padding: 20px;
+            font-size: 20px;
+            width: 200px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .place-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .place-box a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .place-box:nth-child(2) {
+            background-color: #f94144;
+        }
+
+        .place-box:nth-child(3) {
+            background-color: #90be6d;
+        }
+
+        .place-box:nth-child(4) {
+            background-color: #277da1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Top Tourist Places in London</h1>
+        <div class="tourist-places">
+            <div class="place-box"><a href="l-bigben.html">Big Ben</a></div>
+            <div class="place-box"><a href="l-londoneye.html">London Eye</a></div>
+            <div class="place-box"><a href="l-toweroflondon.html">Tower of London</a></div>
+            <div class="place-box"><a href="l-buckingham.html">Buckingham Palace</a></div>
+        </div>
+    </div>
+</body>
+</html>
