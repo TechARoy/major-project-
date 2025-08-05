@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travel Offers</title>
+  <style>
+    :root {
+      --bg-color: #fff;
+      --text-color: #000;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .page-title {
+      text-align: center;
+      font-size: 2.5em;
+      margin: 60px 0 20px;
+    }
+
+    .section {
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    .section-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 15px;
+    }
+
+    .side-by-side {
+      flex-direction: row;
+      justify-content: center;
+      gap: 40px;
+      text-align: left;
+    }
+
+    .red {
+      background-color: #e91e1e;
+      color: #fff;
+    }
+
+    .yellow {
+      background-color: #fbc02d;
+    }
+
+    .blue {
+      background-color: #03a9f4;
+      color: #fff;
+    }
+
+    .text {
+      font-size: 1.5em;
+      font-family: 'Cursive';
+      max-width: 300px;
+    }
+
+    .image-box {
+      background-color: #ccc;
+      width: 250px;
+      height: 180px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.4s ease;
+      position: relative;
+    }
+
+    .image-box:hover {
+      transform: scale(1.05);
+    }
+
+    .image-box::after {
+      content: "Limited Time!";
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 5px 10px;
+      font-size: 0.9em;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .image-box:hover::after {
+      opacity: 1;
+    }
+
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="page-title">Explore Our Hot Travel Deals</h1>
+
+  <a href="ticket-confirmationoffer1.html">
+    <div class="section red">
+      <div class="section-content">
+        <div class="text">from july to september  there is 40% off</div>
+        <div class="image-box">
+          <img src="offer-1.png" alt="Offer 1">
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="ticket-confirmationoffer1.html">
+    <div class="section yellow">
+      <div class="section-content side-by-side">
+        <div class="text">On booking two hotels<br>Flat 40% discount</div>
+        <div class="image-box">
+          <img src="offer-2.png" alt="Offer 2">
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="ticket-confirmationoffer2.html">
+    <div class="section blue">
+      <div class="section-content">
+        <div class="text">30% off on booking of 6 people or more</div>
+        <div class="image-box">
+          <img src="offer-3.png" alt="Offer 3">
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="ticket-confirmationoffer2.html">
+    <div class="section red">
+      <div class="section-content side-by-side">
+        <div class="text">Special festival dealslike durga puja(5-22) - Save up to 30%</div>
+        <div class="image-box">
+          <img src="offer-5.png" alt="Offer 4">
+        </div>
+      </div>
+    </div>
+  </a>
+</body>
+</html>
