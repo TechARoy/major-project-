@@ -64,6 +64,45 @@
     .unmute-btn:hover {
       background: white; color: indianred; border: 1px solid indianred;
     }
+
+    /* ✅ Added for responsiveness */
+    @media (max-width: 768px) {
+      .menu a {
+        font-size: 16px;
+        padding: 8px 12px;
+      }
+      .h-txt h1 {
+        font-size: 2em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 0;
+      }
+      .menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+      }
+      .menu a {
+        display: block;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .login {
+        margin-top: 10px;
+      }
+      .h-txt {
+        max-width: 90%;
+      }
+      .h-txt h1 {
+        font-size: 1.8em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -71,13 +110,13 @@
     <nav>
       <div class="logo">Wander Vista</div>
       <div class="menu">
-        <a href="1-index.html">Home</a>
+        <a href="index.html">Home</a>
         <a href="offer.html">Best Offers</a>
         <a href="hotel.html">Hotel</a>
         <a href="about.html">About Us</a>
         <a href="contactus.html">Contact</a>
       </div>
-      <div class="login"><a href="login.php">Login</a></div>
+      <div class="login"><a href="login.html">Login</a></div>
     </nav>
     <section class="h-txt">
       <span>Jet Set Explore</span>
