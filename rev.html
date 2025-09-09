@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonials - Wander Vista</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      background: linear-gradient(135deg, #3A0CA3, #7209B7, #F72585);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 50px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(6px);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+      color: #fff;
+    }
+
+    .reviews {
+      display: grid;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .review-card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .review-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #ffebf6;
+    }
+
+    .review-card p {
+      line-height: 1.6;
+      font-size: 0.95rem;
+      color: #f5dff3;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    form textarea {
+      resize: none;
+      height: 100px;
+    }
+
+    form button {
+      background: #ff4fa4;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    form button:hover {
+      background: #d93f89;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>What Our Travelers Say</h1>
+
+    <div class="reviews" id="reviews">
+      <div class="review-card">
+        <h3>✨ Priya Sharma</h3>
+        <p>"One of the best travel booking experiences ever! The website made planning my trip smooth and hassle-free."</p>
+      </div>
+      <div class="review-card">
+        <h3>🌍 Arjun Mehta</h3>
+        <p>"I loved how easy it was to compare destinations. The colors and design made me feel excited about my journey."</p>
+      </div>
+    </div>
+
+    <h2 style="margin-bottom:15px;">Write Your Own Review</h2>
+    <form id="reviewForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <textarea id="message" placeholder="Your Review..." required></textarea>
+      <button type="submit">Submit Review</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("reviewForm");
+    const reviewsContainer = document.getElementById("reviews");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (name && message) {
+        // Create review card
+        const card = document.createElement("div");
+        card.className = "review-card";
+
+        const h3 = document.createElement("h3");
+        h3.textContent = "📝 " + name;
+
+        const p = document.createElement("p");
+        p.textContent = '"' + message + '"';
+
+        card.appendChild(h3);
+        card.appendChild(p);
+
+        // Add to reviews
+        reviewsContainer.appendChild(card);
+
+        // Clear form
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
