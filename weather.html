@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Simple Weather</title>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    body {
+        background: #000;
+        font-family: 'Poppins', sans-serif;
+        color: #fff;
+        text-align: center;
+        padding: 60px;
+    }
+
+    h1 {
+        font-size: 32px;
+        font-weight: 600;
+        color: #ffdd57;
+        margin-bottom: 20px;
+    }
+
+    select {
+        padding: 10px 15px;
+        font-size: 18px;
+        background: #111;
+        color: #fff;
+        border: 1px solid #333;
+        border-radius: 8px;
+        outline: none;
+    }
+
+    #weather-box {
+        margin-top: 30px;
+        padding: 20px;
+        font-size: 22px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.1);
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+</head>
+<body>
+
+<h1>🌦 Simple Live Weather</h1>
+
+<select id="destination">
+    <option value="">Select Destination</option>
+
+    <!-- India -->
+    <option data-lat="28.7041" data-lon="77.1025">Delhi, India</option>
+
+    <!-- London -->
+    <option data-lat="51.5074" data-lon="-0.1278">London, UK</option>
+
+    <!-- America -->
+    <option data-lat="40.7128" data-lon="-74.0060">New York, USA</option>
+</select>
+
+<div id="weather-box">Weather info will appear here...</div>
+
+<script>
+document.getElementById("destination").addEventListener("change", function () {
+    let option = this.options[this.selectedIndex];
+    let lat = option.getAttribute("data-lat");
+    let lon = option.getAttribute("data-lon");
+
+    if (!lat || !lon) return;
+
+    document.getElementById("weather-box").innerHTML = "Loading weather... ⏳";
+
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code`)
+      .then(res => res.json())
+      .then(data => {
+          let temp = data.current.temperature_2m;
+          let code = data.current.weather_code;
+
+          let weatherText = "";
+
+          if (code === 0) weatherText = "☀️ Clear Sky";
+          else if (code === 1 || code === 2) weatherText = "⛅ Partly Cloudy";
+          else if (code === 3) weatherText = "☁️ Cloudy";
+          else if (code >= 51 && code <= 67) weatherText = "🌧️ Rain";
+          else if (code >= 71 && code <= 77) weatherText = "❄️ Snow";
+          else weatherText = "🌍 Weather Unavailable";
+
+          document.getElementById("weather-box").innerHTML =
+              `<b>Temperature:</b> ${temp}°C<br><b>Condition:</b> ${weatherText}`;
+      })
+      .catch(() => {
+          document.getElementById("weather-box").innerHTML = "Failed to load weather ❌";
+      });
+});
+</script>
+
+</body>
+</html>
